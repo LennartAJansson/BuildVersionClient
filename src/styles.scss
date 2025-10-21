@@ -1,0 +1,70 @@
+
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  /* Allow both light and dark color-schemes where supported */
+  color-scheme: light dark;
+
+  /* Use the Material Design system background tokens so the page background
+     follows the active Material theme (light/dark). */
+  background-color: var(--mat-sys-background, #fff);
+  color: var(--mat-sys-on-background, rgba(0,0,0,0.87));
+
+  padding: 40px; /* frame the app content away from the edges */
+  /* keep Material surface for cards and panels */
+  --app-surface: var(--mat-sys-surface, #ffffff);
+  font: var(--mat-sys-body-medium);
+
+  /* Reset the user agent margin. */
+  margin: 0;
+}
+
+/* Theme variable sets: light and dark. ThemeService toggles the class on <html>.
+   These variables back the Material system tokens used elsewhere in styles. */
+:root.light-theme {
+  --mat-sys-background: #ffffff;
+  --mat-sys-on-background: rgba(0,0,0,0.87);
+  --mat-sys-surface: #ffffff;
+  --mat-sys-on-surface: rgba(0,0,0,0.87);
+  --mat-sys-primary: #0067c5;
+  --mat-sys-on-primary: #ffffff;
+}
+
+html.dark-theme {
+  --mat-sys-background: #121212;
+  --mat-sys-on-background: #ffffff;
+  --mat-sys-surface: #1e1e1e;
+  --mat-sys-on-surface: rgba(255,255,255,0.87);
+  --mat-sys-primary: #90caf9;
+  --mat-sys-on-primary: rgba(0,0,0,0.87);
+}
+
+/* Smooth transition when toggling themes */
+html {
+  transition: background-color 220ms linear, color 220ms linear;
+}
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; box-sizing: border-box; }
+
+/* Ensure mat-cards use the white surface so they contrast against the light-blue background */
+.mat-card {
+  background-color: var(--app-surface) !important;
+}

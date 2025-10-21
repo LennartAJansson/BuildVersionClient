@@ -1,0 +1,10 @@
+
+/* Toolbar spacing helper */
+.spacer {
+	flex: 1 1 auto;
+}
+
+/* Style for the theme toggle button (small visual polish) */
+button[aria-label="Toggle theme"] {
+	color: inherit;
+}

@@ -1,0 +1,11 @@
+
+<main>
+  <mat-toolbar color="primary">
+    <span>{{ title() }}</span>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="toggleTheme()" aria-label="Toggle theme">
+      <mat-icon>{{ themeIcon }}</mat-icon>
+    </button>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</main>

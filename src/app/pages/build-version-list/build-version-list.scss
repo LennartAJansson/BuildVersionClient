@@ -1,0 +1,120 @@
+
+:host {
+  display: block;
+}
+
+/* Ensure the component container follows the active theme surface/background */
+:host {
+	background-color: var(--mat-sys-surface, var(--app-surface, #fff));
+	color: var(--mat-sys-on-surface, rgba(0,0,0,0.87));
+}
+
+.card-content {
+	padding: 1rem;
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 0.5rem;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	padding: 2rem 0;
+}
+
+.error {
+	color: #b00020;
+	padding: 1rem 0;
+	font-weight: 600;
+}
+
+.no-data {
+	padding: 1rem 0;
+	color: rgba(0,0,0,0.6);
+}
+
+.mat-card {
+		border-radius: 8px;
+		/* Make sure card surfaces follow the theme */
+		background-color: var(--mat-sys-surface, var(--app-surface, #fff)) !important;
+		color: var(--mat-sys-on-surface, rgba(0,0,0,0.87)) !important;
+}
+
+/* Also target MDC class names for robustness */
+.mat-mdc-card, mat-card {
+	background-color: var(--mat-sys-surface, var(--app-surface, #fff)) !important;
+	color: var(--mat-sys-on-surface, rgba(0,0,0,0.87)) !important;
+}
+
+.mat-elevation-z8 {
+	box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.table-wrapper {
+	width: 100%;
+	overflow: auto;
+	border-radius: 6px;
+}
+
+table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	min-width: 600px; /* give horizontal room on small screens */
+}
+
+th.mat-header-cell {
+	background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.04));
+	color: rgba(0,0,0,0.87);
+	font-weight: 600;
+	padding: 12px 16px;
+	text-align: left;
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+td.mat-cell {
+	padding: 10px 16px;
+	vertical-align: middle;
+	color: rgba(0,0,0,0.87);
+}
+
+tr.mat-row:nth-child(odd) td.mat-cell {
+	background: rgba(0,0,0,0.04);
+}
+
+tr.mat-row:hover td.mat-cell {
+	background: rgba(0,0,0,0.06);
+}
+
+/* Table border to separate from white page background */
+table {
+	border: 1.5px solid rgba(0,0,0,0.12);
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* Truncate long cell content */
+.mat-cell, .mat-header-cell {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 240px;
+}
+
+/* Responsive: allow wrapping on very small screens */
+@media (max-width: 560px) {
+	.mat-cell, .mat-header-cell {
+		white-space: normal;
+		max-width: none;
+	}
+	table {
+		min-width: 0;
+	}
+}
