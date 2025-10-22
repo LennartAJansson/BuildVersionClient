@@ -18,10 +18,12 @@ describe('BuildVersionList', () => {
     document.documentElement.classList.remove('dark-theme', 'light-theme');
 
     svcSpy = jasmine.createSpyObj('BuildVersionService', ['getBuildVersions', 'getByName']);
-  svcSpy.getBuildVersions.and.returnValue(of([]));
-  svcSpy.getByName.and.returnValue(of(null as any));
+    svcSpy.getBuildVersions.and.returnValue(of([]));
+    svcSpy.getByName.and.returnValue(of(null as any));
 
     dialogSpy = jasmine.createSpyObj('MatDialog', ['open']);
+    // Ensure the component receives the spy even with standalone imports
+    TestBed.overrideProvider(MatDialog, { useValue: dialogSpy });
 
     await TestBed.configureTestingModule({
       imports: [BuildVersionList],
@@ -46,9 +48,10 @@ describe('BuildVersionList', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(svcSpy.getBuildVersions).toHaveBeenCalledTimes(1);
-    const el = fixture.nativeElement as HTMLElement;
-    expect(el.querySelector('.no-data')?.textContent).toContain('Ingen data');
+  expect(svcSpy.getBuildVersions).toHaveBeenCalledTimes(1);
+  const el = fixture.nativeElement as HTMLElement;
+  // Template renders the full localized empty message
+  expect(el.querySelector('.no-data')?.textContent?.trim()).toBe('Ingen data hittades.');
   });
 
   it('should reload when button is clicked', async () => {
@@ -100,8 +103,9 @@ describe('BuildVersionList', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    const el = fixture.nativeElement as HTMLElement;
-    expect(el.querySelector('.error')?.textContent).toContain('server failed');
+  const el = fixture.nativeElement as HTMLElement;
+  // Error text is rendered directly from the error message
+  expect(el.querySelector('.error')?.textContent?.trim()).toBe('server failed');
   });
 
   it('should call getByName and display found version', async () => {
